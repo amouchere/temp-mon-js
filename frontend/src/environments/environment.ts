@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://temp-mon-js.herokuapp.com/api/temps'
+  backendUrl: 'http://localhost:8080/api/temps'
 };
 
 /*

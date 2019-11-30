@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  backendUrl: 'https://temp-mon-js.herokuapp.com/api/temps'
+
 };

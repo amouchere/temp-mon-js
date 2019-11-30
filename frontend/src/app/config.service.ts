@@ -8,7 +8,7 @@ import { Temps } from './Temp';
 export class ConfigService {
   constructor(private http: HttpClient) {}
 
-  url = 'http://localhost:8080/api/temps';
+  url = 'https://temp-mon-js.herokuapp.com/api/temps';
 
   getTemps() {
     return this.http.get<Temps[]>(this.url);

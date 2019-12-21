@@ -41,7 +41,6 @@ export class GrapheComponent implements OnInit {
         },
         {
           id: 'y-axis-1',
-          display: "eza",
           position: 'right',
           gridLines: {
             color: 'rgba(255,0,0,0.3)',

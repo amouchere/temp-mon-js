@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Temps } from './Temp';
+import { PayloadByLocation } from './Temp';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -12,6 +12,6 @@ export class ConfigService {
 
   getTemps() {
 
-    return this.http.get<Temps[]>(environment.backendUrl);
+    return this.http.get<PayloadByLocation[]>(environment.backendUrl);
   }
 }

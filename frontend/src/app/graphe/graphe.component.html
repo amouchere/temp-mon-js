@@ -1,13 +1,14 @@
-<div style="display: block;" *ngIf="ready">
+<h1>{{location}}</h1>
+<div *ngIf="ready" style="display: block;">
   <canvas
-    baseChart
+    [chartType]="lineChartType"
+    [colors]="lineChartColors"
     [datasets]="lineChartData"
     [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
     [legend]="lineChartLegend"
-    [chartType]="lineChartType"
+    [options]="lineChartOptions"
     [plugins]="lineChartPlugins"
+    baseChart
   >
   </canvas>
 </div>

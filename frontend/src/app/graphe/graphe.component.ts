@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
-import { ConfigService } from '../config.service';
-import { Temp, Temps } from '../Temp';
+import {Component, OnInit} from '@angular/core';
+import {ChartDataSets, ChartOptions} from 'chart.js';
+import {Color, Label} from 'ng2-charts';
+import {ConfigService} from '../config.service';
+import {PayloadByLocation} from '../Temp';
 
 @Component({
   selector: 'app-graphe',
@@ -11,6 +11,7 @@ import { Temp, Temps } from '../Temp';
 })
 export class GrapheComponent implements OnInit {
   public ready = false;
+  public location = "";
   public lineChartData: ChartDataSets[] = [];
 
   public lineChartLabels: Label[] = [];
@@ -23,6 +24,34 @@ export class GrapheComponent implements OnInit {
           type: 'time',
           time: {
             unit: 'minute'
+          }
+        }
+      ],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+          ticks: {
+            fontColor: 'black'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Taux d\'humidité'
+          }
+        },
+        {
+          id: 'y-axis-1',
+          display: "eza",
+          position: 'right',
+          gridLines: {
+            color: 'rgba(255,0,0,0.3)',
+          },
+          ticks: {
+            fontColor: 'red'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Température'
           }
         }
       ]
@@ -40,15 +69,22 @@ export class GrapheComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor(private service: ConfigService) {}
+  constructor(private service: ConfigService) {
+  }
 
   ngOnInit() {
-    this.service.getTemps().subscribe((temps: Temps[]) => {
+    this.service.getTemps().subscribe((temps: PayloadByLocation[]) => {
       temps.forEach(element => {
+        this.location = element.location;
         this.lineChartLabels = element.data.map(entry => entry.dateTime);
         this.lineChartData.push({
-          label: element.location,
-          data: element.data.map(entry => entry.value)
+          label: element.location + ' humi',
+          data: element.data.map(entry => entry.humidity)
+        });
+        this.lineChartData.push({
+          label: element.location + ' temp',
+          data: element.data.map(entry => entry.temperature),
+          yAxisID: 'y-axis-1'
         });
       });
 

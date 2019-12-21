@@ -1,9 +1,10 @@
-export interface Temp {
-  value: number;
+export interface Payload {
+  temperature: number;
+  humidity: number;
   dateTime: string;
 }
 
-export interface Temps {
-  data: Temp[];
+export interface PayloadByLocation {
+  data: Payload[];
   location: string;
 }

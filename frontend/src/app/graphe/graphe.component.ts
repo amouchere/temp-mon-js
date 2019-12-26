@@ -32,7 +32,7 @@ export class GrapheComponent implements OnInit {
           id: 'y-axis-0',
           position: 'left',
           ticks: {
-            fontColor: 'black'
+            fontColor: 'blue'
           },
           scaleLabel: {
             display: true,
@@ -60,6 +60,10 @@ export class GrapheComponent implements OnInit {
   public lineChartColors: Color[] = [
     {
       borderColor: 'black',
+      backgroundColor: 'rgba(25,25,255,0.3)'
+    },
+    {
+      borderColor: 'black',
       backgroundColor: 'rgba(255,0,0,0.3)'
     }
   ];
@@ -77,11 +81,11 @@ export class GrapheComponent implements OnInit {
         this.location = element.location;
         this.lineChartLabels = element.data.map(entry => entry.dateTime);
         this.lineChartData.push({
-          label: element.location + ' humi',
+          label: 'humidité',
           data: element.data.map(entry => entry.humidity)
         });
         this.lineChartData.push({
-          label: element.location + ' temp',
+          label: 'température',
           data: element.data.map(entry => entry.temperature),
           yAxisID: 'y-axis-1'
         });

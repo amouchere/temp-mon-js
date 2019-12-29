@@ -6,9 +6,11 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GrapheComponent } from './graphe/graphe.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, GrapheComponent],
+  declarations: [AppComponent, GrapheComponent, NavbarComponent, DashboardComponent],
   imports: [BrowserModule, AppRoutingModule, ChartsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

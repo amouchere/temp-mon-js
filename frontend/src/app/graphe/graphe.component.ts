@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 import {ConfigService} from '../config.service';
-import {PayloadByLocation} from '../Temp';
+import {Payload} from '../Temp';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-graphe',
@@ -10,8 +11,10 @@ import {PayloadByLocation} from '../Temp';
   styleUrls: ['./graphe.component.scss']
 })
 export class GrapheComponent implements OnInit {
+
+  public location;
+
   public ready = false;
-  public location = "";
   public lineChartData: ChartDataSets[] = [];
 
   public lineChartLabels: Label[] = [];
@@ -72,28 +75,32 @@ export class GrapheComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor(private service: ConfigService) {
+  constructor(private service: ConfigService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.service.getTemps().subscribe((temps: PayloadByLocation[]) => {
+    this.location = this.route.snapshot.paramMap.get('location');
+    console.log("init graphe " + this.location);
+
+    this.service.getTempsByLocation(this.location).subscribe((temps: Payload[]) => {
+
+
       temps.forEach(element => {
-        this.location = element.location;
-        this.lineChartLabels = element.data.map(entry => entry.dateTime);
-        this.lineChartData.push({
-          label: 'humidité',
-          data: element.data.map(entry => entry.humidity)
-        });
-        this.lineChartData.push({
-          label: 'température',
-          data: element.data.map(entry => entry.temperature),
-          yAxisID: 'y-axis-1'
-        });
+        this.lineChartLabels.push(element.dateTime);
+      });
+
+      this.lineChartData.push({
+        label: 'humidité',
+        data: temps.map(entry => entry.humidity)
+      });
+
+      this.lineChartData.push({
+        label: 'température',
+        data: temps.map(entry => entry.temperature),
+        yAxisID: 'y-axis-1'
       });
 
       this.ready = true;
-      console.log('lineChartLabels ' + this.lineChartLabels);
-      console.log('lineChartData ' + this.lineChartData);
     });
   }
 }

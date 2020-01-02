@@ -92,11 +92,12 @@ export class GrapheComponent implements OnInit {
 
     this.service.getTempsByLocation(this.location).subscribe((temps: Payload[]) => {
 
-
+      this.lineChartLabels = [];
       temps.forEach(element => {
         this.lineChartLabels.push(element.dateTime);
       });
 
+      this.lineChartData = [];
       this.lineChartData.push({
         label: 'humidité',
         data: temps.map(entry => entry.humidity)

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
+    "copy": "rm -rf ../backend/src/main/resources/static/* && cp -r dist/temp-mon-js/* ../backend/src/main/resources/static/",
     "lint": "ng lint"
   },
   "private": true,

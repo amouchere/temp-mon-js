@@ -1,9 +1,10 @@
+import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 import {ConfigService} from '../config.service';
 import {Payload} from '../Temp';
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-graphe',
@@ -75,12 +76,19 @@ export class GrapheComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor(private service: ConfigService, private route: ActivatedRoute) {
+  constructor(private service: ConfigService, private route: ActivatedRoute, private locationService: Location) {
   }
 
+
   ngOnInit() {
+    console.log('init graphe ' + this.location);
+    this.updateComponent();
+    this.locationService.onUrlChange((url: string) => this.updateComponent());
+  }
+
+  private updateComponent() {
     this.location = this.route.snapshot.paramMap.get('location');
-    console.log("init graphe " + this.location);
+    console.log('update graphe ' + this.location);
 
     this.service.getTempsByLocation(this.location).subscribe((temps: Payload[]) => {
 

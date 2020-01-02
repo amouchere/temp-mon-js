@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ConfigService} from "../config.service";
+import {ConfigService} from '../config.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +9,13 @@ import {ConfigService} from "../config.service";
 export class NavbarComponent implements OnInit {
 
   navbarOpen = false;
-  locations: String[] = [];
+  locations: string[] = [];
 
   constructor(private service: ConfigService) {
   }
 
   ngOnInit() {
-    this.service.getLocation().subscribe((locations: String[]) => {
+    this.service.getLocation().subscribe((locations: string[]) => {
       locations.forEach(element => {
         console.log(element);
       });

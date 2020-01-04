@@ -9,7 +9,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
-  {path: ':location', component: GrapheComponent}
+  {path: 'graph/:location', component: GrapheComponent}
 ];
 
 @NgModule({

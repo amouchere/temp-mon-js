@@ -10,7 +10,7 @@
        class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li *ngFor="let location of locations" class="nav-item">
-        <a class="nav-link" [routerLink]="'/' + this.location">{{location}}</a>
+        <a class="nav-link" [routerLink]="'/graph/' + this.location">{{location}}</a>
       </li>
     </ul>
   </div>

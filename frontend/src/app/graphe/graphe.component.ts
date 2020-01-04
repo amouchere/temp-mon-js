@@ -27,7 +27,10 @@ export class GrapheComponent implements OnInit {
         {
           type: 'time',
           time: {
-            unit: 'minute'
+            unit: 'hour',
+            displayFormats:{
+              hour: 'HH'
+            }
           }
         }
       ],
@@ -36,7 +39,8 @@ export class GrapheComponent implements OnInit {
           id: 'y-axis-0',
           position: 'left',
           ticks: {
-            fontColor: 'blue'
+            fontColor: 'blue',
+            stepSize: 1,
           },
           scaleLabel: {
             display: true,
@@ -50,7 +54,8 @@ export class GrapheComponent implements OnInit {
             color: 'rgba(255,0,0,0.3)',
           },
           ticks: {
-            fontColor: 'red'
+            fontColor: 'red',
+            stepSize: 1
           },
           scaleLabel: {
             display: true,
@@ -81,9 +86,11 @@ export class GrapheComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('init graphe ' + this.location);
     this.updateComponent();
-    this.locationService.onUrlChange((url: string) => this.updateComponent());
+    this.locationService.onUrlChange((url: string) => {
+      console.log(url);
+      this.updateComponent()
+    });
   }
 
   private updateComponent() {

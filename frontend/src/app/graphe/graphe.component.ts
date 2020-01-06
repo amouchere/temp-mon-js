@@ -28,7 +28,7 @@ export class GrapheComponent implements OnInit {
           type: 'time',
           time: {
             unit: 'hour',
-            displayFormats:{
+            displayFormats: {
               hour: 'HH'
             }
           }
@@ -45,14 +45,14 @@ export class GrapheComponent implements OnInit {
           scaleLabel: {
             display: true,
             labelString: 'Taux d\'humidité'
+          },
+          gridLines: {
+            drawOnChartArea: false
           }
         },
         {
           id: 'y-axis-1',
           position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
           ticks: {
             fontColor: 'red',
             stepSize: 1
@@ -60,6 +60,9 @@ export class GrapheComponent implements OnInit {
           scaleLabel: {
             display: true,
             labelString: 'Température'
+          },
+          gridLines: {
+            drawOnChartArea: false
           }
         }
       ]
@@ -107,7 +110,8 @@ export class GrapheComponent implements OnInit {
       this.lineChartData = [];
       this.lineChartData.push({
         label: 'humidité',
-        data: temps.map(entry => entry.humidity)
+        data: temps.map(entry => entry.humidity),
+        yAxisID: 'y-axis-0'
       });
 
       this.lineChartData.push({

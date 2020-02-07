@@ -8,6 +8,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: 'error', component: DashboardComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'graph/:location', component: GrapheComponent}
 ];
